@@ -8,7 +8,6 @@ const authMiddleware = (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     let check = jwt.verify(token, JWT_SECRET);
-    req.user = check;
     next();
   } catch (error) {
     console.log(error);
