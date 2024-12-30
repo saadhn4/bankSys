@@ -37,18 +37,18 @@ router.post("/register", async (req, res) => {
     };
     //creating them
     await userModel.create(newUser);
-    //email verification
-    await sendEmail({
-      to: email,
-      html: `<p>Verify your email using the link below:</p>
-      <a href = "${URL}/api/public/verifyemail/${emailToken}">Click on Meeee</a>
-      `,
-    });
-    //sms verification
-    await sendSMS({
-      to: phone,
-      body: `${URL}/api/public/verifyphone/${phoneToken}`,
-    });
+    // //email verification
+    // await sendEmail({
+    //   to: email,
+    //   html: `<p>Verify your email using the link below:</p>
+    //   <a href = "${URL}/api/public/verifyemail/${emailToken}">Click on Meeee</a>
+    //   `,
+    // });
+    // //sms verification
+    // await sendSMS({
+    //   to: phone,
+    //   body: `${URL}/api/public/verifyphone/${phoneToken}`,
+    // });
     console.log(`${URL}/api/public/emailverify/${emailToken}`);
     console.log(
       `Please verify your phone number using the link below:\n\n${URL}/api/public/phoneverify/${phoneToken}`
@@ -60,7 +60,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/verifyemail/:token", async (req, res) => {
+router.get("/emailverify/:token", async (req, res) => {
   try {
     const { token } = req.params;
     let user = await userModel.findOne({ "userVerifiedToken.email": token });
@@ -77,7 +77,7 @@ router.get("/verifyemail/:token", async (req, res) => {
   }
 });
 
-router.get("/verifyphone/:token", async (req, res) => {
+router.get("/phoneverify/:token", async (req, res) => {
   try {
     const { token } = req.params;
     let user = await userModel.findOne({ "userVerifiedToken.phone": token });
