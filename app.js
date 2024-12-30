@@ -5,6 +5,7 @@ import customerRouter from "./controllers/customers/index.js";
 import accountsRouter from "./controllers/accounts/index.js";
 import transactionsRouter from "./controllers/transactions/index.js";
 import publicRouter from "./controllers/public/index.js";
+import authMiddleware from "./middlewares/auth.js";
 
 const app = express();
 app.use(express.json());
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/public", publicRouter);
+app.use(authMiddleware);
 app.use("/api/customers", customerRouter);
 app.use("/api/accounts", accountsRouter);
 app.use("/api/transactions", transactionsRouter);
