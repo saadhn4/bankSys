@@ -1,0 +1,11 @@
+{
+  "PORT": 5001,
+  "DB_URL": "",
+  "EMAIL": "",
+  "PASS": "",
+  "SID": "",
+  "TOKEN": "",
+  "PHONE": "",
+  "JWT_SECRET": "",
+  "URL": "http://localhost:5001"
+}
